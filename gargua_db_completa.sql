@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-03-2015 a las 05:49:14
+-- Tiempo de generación: 14-03-2015 a las 09:01:52
 -- Versión del servidor: 5.5.41-0ubuntu0.14.04.1
 -- Versión de PHP: 5.5.9-1ubuntu4.6
 
@@ -276,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_usuario_estilo_aprendizaje1_idx` (`id_estilo_aprendizaje`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=16 ;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -284,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre_usuario`, `apellido_usuario`, `email`, `password`, `nivel_secundaria_usuario`, `rol_usuario`, `id_estilo_aprendizaje`, `estado_usuario`, `fecha_nacimiento_usuario`, `genero_usuario`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2, 'Test', 'Prueba', 'test@example.com', '$2y$10$vAuRRdJGOhTQsRcVLQ5mTuI03y0DGcP/rZ5iagVLQzQ.9RVxn//QG', NULL, 'ESTUDIANTE', 1, 'ACTIVO', '0000-00-00', 'MASCULINO', 'OjZz00Dg1ulELM5QWDnFZPMjw2GtLlPNkXJEAJAwW3Cm2mMNrdcoTUsUXASY', '2015-03-13 20:25:43', '2015-03-14 13:01:44', NULL),
-(9, 'Pedro', 'Romero', 'pedroromn@gmail.com', '$2y$10$8gKwqfAXORZrDHWNRZ8.I.KptjYUtI//vunaiHJWFXCzzf63UZ8kK', 'UNDECIMO', 'ESTUDIANTE', 9, 'INACTIVO', '2015-03-07', 'MASCULINO', NULL, '2015-03-14 15:38:25', '2015-03-14 15:38:25', NULL);
+(11, 'Pedro', 'Romero', 'pedroromn@gmail.com', '$2y$10$TsxXNofGKwkLlV0vDhbFWupCzwvveqRcSkeohNtsKaZUwP/DKETK2', 'SEXTO', 'ESTUDIANTE', 4, 'ACTIVO', '2015-03-06', 'MASCULINO', NULL, '2015-03-14 16:25:30', '2015-03-14 16:25:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -295,7 +295,7 @@ INSERT INTO `usuarios` (`id`, `nombre_usuario`, `apellido_usuario`, `email`, `pa
 CREATE TABLE IF NOT EXISTS `usuarios_cursos` (
   `id_curso` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `fecha_hora` datetime NOT NULL,
+  `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_curso`,`id_usuario`),
   KEY `fk_curso_has_usuario_usuario1_idx` (`id_usuario`),
   KEY `fk_curso_has_usuario_curso_idx` (`id_curso`)
