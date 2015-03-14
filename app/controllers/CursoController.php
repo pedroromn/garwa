@@ -6,9 +6,22 @@ class CursoController extends BaseController {
     public function get_cursos()
     {
 
-        $cursos = Curso::all();
+        if(Auth::check()){
 
-        return View::make('Curso.cursos', array('cursos' => $cursos));
+
+             $cursos = Curso::all();
+
+             $usuario = Auth::user();
+
+             return View::make('Curso.cursos', array('cursos' => $cursos, 'usuario' => $usuario));
+
+        }else{
+
+            return Redirect::to('login')
+                            ->with('mensaje_error', 'Para acceder al contenido debes iniciar sesión');
+        }
+
+ 
     }
 
 

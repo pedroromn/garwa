@@ -44,8 +44,7 @@ class AuthController extends BaseController {
                 return Redirect::to('cursos');
             }
             return Redirect::to('login')
-                            ->with('mensaje_error', 'Tus datos son incorrectos')
-                             ->withInput(Input::except('password_field'));
+                            ->with('mensaje_error', 'Tus datos son incorrectos');
         }
 
     }
@@ -86,27 +85,44 @@ class AuthController extends BaseController {
         if(Usuario::valida_usuario($data)){
 
 
-            $id_usuario = Usuario::crear_usuario_datos_personales($data['nombre_usuario'], $data['apellido_usuario'], 
+            $user = DB::table('usuarios')
+                    ->where('email', '=', $data['email'])
+                    ->get(); 
+                    
+
+            if(isset($user)){
+
+
+                return Redirect::to('registro_datos')
+                            ->with('mensaje_error', 'Ya existe un usuario con ese email');
+
+            }else{
+                    
+
+                $id_usuario = Usuario::crear_usuario_datos_personales($data['nombre_usuario'], $data['apellido_usuario'], 
                 $data['email'], $data['password'], $data['nivel_secundaria_usuario'], $data['fecha_nacimiento_usuario'], 
                 $data['genero_usuario']);
 
 
-            if($id_usuario != null){
+                if($id_usuario != null){
 
-                //return Redirect::to('test', array('id_usuario' => $id_usuario));
+                    //return Redirect::to('test', array('id_usuario' => $id_usuario));
 
-                return Redirect::action('AuthController@get_test_felder', ['id_usuario' => $id_usuario]);
+                    return Redirect::action('AuthController@get_test_felder', ['id_usuario' => $id_usuario]);
 
-            }else{
 
-                return Redirect::to('registro')
-                            ->with('mensaje_error', 'Creación del usuario fallida');
+                }else{
 
-            }
+                    return Redirect::to('registro_datos')
+                                ->with('mensaje_error', 'Creación del usuario fallida');
+
+                }       
+
+            }        
 
         }else{
 
-            return Redirect::to('registro')
+            return Redirect::to('registro_datos')
                             ->with('mensaje_error', 'Tus datos son incorrectos');
 
         }
@@ -124,18 +140,42 @@ class AuthController extends BaseController {
 
         $usuario = Usuario::find($id_usuario);
 
+        if(isset($usuario)){
 
-        return View::make('Auth.test', array('test' => $test, 'usuario' => $usuario));
+            return View::make('Auth.test', array('test' => $test, 'usuario' => $usuario));
+
+        }else{
+
+            echo "Sitio no existente";
+
+        }
+
+
+        
     }
+
+    
 
 
 
     public function post_completar_registro(){
 
 
-        // Salvar estilo aprendizaje y poner activo al usuario
+        $id_estilo_aprendizaje = Input::get('estilo_aprendizaje_usuario');
+        $id_usuario = Input::get('id_usuario');
 
-        return Redirect::to('login');
+
+        if(Usuario::actualizar_usuario_test($id_usuario, $id_estilo_aprendizaje)){
+
+            return Redirect::to('login')->with('mensaje', 'Has completado tu registro, puedes iniciar sesión!');
+
+        }else{
+
+            return Redirect::to('registro_datos')->with('mensaje_error', 'No has iniciado tu registro!');
+
+        }
+
+        
     }
 
 

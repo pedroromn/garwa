@@ -54,6 +54,13 @@ class Usuario extends Eloquent implements UserInterface , RemindableInterface{
 
     }
 
+
+    public static function valida_usuario_email($email){
+
+        //
+
+    }
+
     public static function crear_usuario_datos_personales($nombre, $apellido, $email, $password, 
         $nivel_secundaria, $fecha_nac, $genero){
 
@@ -81,6 +88,29 @@ class Usuario extends Eloquent implements UserInterface , RemindableInterface{
             return null;
 
         }        
+
+    }
+
+
+    public static function actualizar_usuario_test($id_usuario, $id_estilo){
+
+        $usuario = Usuario::find($id_usuario);
+
+        if(isset($usuario)){
+
+
+            $usuario = DB::table('usuarios')
+                            ->where('id', $id_usuario)
+                            ->update(array('id_estilo_aprendizaje' => $id_estilo, 'estado_usuario' => 1));
+
+            return true;
+
+        }else{
+
+            return false;
+
+        }
+
 
     }
 

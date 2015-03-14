@@ -2,8 +2,10 @@ $('document').ready(function(){
 
     $('#evaluar_test').click(function(){
 
+        //alert($('input:checked').length);
 
-        if($('input:checked').length == 88){
+
+        if( $('input:checked').length == 44 ){
 
             var estilo_aprendizaje = 0;
 
@@ -92,19 +94,12 @@ $('document').ready(function(){
 
                 }
 
-            }else{
-
-
             }
 
-            if(estilo_aprendizaje == ''){
+            if(estilo_aprendizaje == 0){
                 
                 estilo_aprendizaje = Math.floor(Math.random() * 7) + 1;
-                alert('random  => ' + estilo_aprendizaje);
-
-            }else{
-
-                alert(' ok => ' + estilo_aprendizaje);
+                //alert('random  => ' + estilo_aprendizaje);
 
             }
 
@@ -112,7 +107,10 @@ $('document').ready(function(){
 
             $('#estilo').val(estilo_aprendizaje);
 
-           
+            var id = $('#dato-usuario').val();
+            $('#id_usuario').val(id);
+
+            
             
             $('#modal_form').modal('show');
 

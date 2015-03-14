@@ -80,14 +80,13 @@
                 
                 <h3 class="dark-grey">Información de Usuario</h3>
                 
-                <div class="form-group col-lg-14">
+                <div class="form-group col-lg-12">
                     {{ Form::label('email', 'Email') }}
                    {{ Form::email('email', '', ['class' => 'form-control', 'required' => 'required']) }}
                 </div>
 
-                </div>
 
-                <div class="form-group col-lg-6">
+                <div class="form-group col-lg-12">
                     {{ Form::label('password', 'Password') }}
                     {{ Form::password('password', ['class' => 'form-control', 'required' => 'required']) }}
                 </div>
@@ -96,32 +95,31 @@
                     {{ Form::submit('Enviar', array('class' => 'btn btn-primary')) }}
                 </div>
 
-                
-
             </div>
 
-        </div>
+
 
 {{ Form::close() }}
 
+</div>
 
-                        <div class="container-page">
 
-                          @if(Session::has('mensaje_error'))
+
+
+
+                       
+  </div> <!-- DIV CLASS="CONTAINER" --> 
+
+
+
+<div class="container">
+@if(Session::has('mensaje_error'))
                             <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
                           @endif
-
-                          @if(Session::has('mensaje'))
-                            <div class="alert alert-success">{{ Session::get('mensaje') }}</div>
-                          @endif
-
-                        </div>    
+</div>
 
 
 
-
-
-  </div> <!-- DIV CLASS="CONTAINER" -->    
 @stop
 
 

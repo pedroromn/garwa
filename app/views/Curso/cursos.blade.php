@@ -26,13 +26,8 @@
                   <ul class="nav nav-pills pull-right">
 
                    @if (Auth::check())
-
                         <li><a href="{{ URL::to('logout') }}">Cerrar sesion</a></li>
-                    @else
-                        <li role="presentation" ><a href="{{ URL::to('login') }}">Login</a></li>
                     @endif
-
-                    <li role="presentation" class=""><a href="{{ URL::to('') }}">Inicio</a></li>
                   </ul>
                 </nav>
           </div>
@@ -48,7 +43,7 @@
 
   <div class="jumbotron">
       <div class="container">
-        <h1>Bienvenido [Nombre Estudiante] </h1>
+        <h1>Bienvenido {{ $usuario->nombre_usuario }} </h1>
         <p>En esta sección encontrarás el listado de cursos disponibles</p>
       </div>
     </div>

@@ -22,9 +22,12 @@ Route::post('login', 'AuthController@post_login');
 Route::get('logout', 'AuthController@get_logout');
 
 
-Route::get('/registro', 'AuthController@get_registro_datos');
-Route::post('/registro', 'AuthController@post_completar_registro');
-Route::post('/registro', 'AuthController@post_registro_datos_personales');
+Route::get('/registro_datos', 'AuthController@get_registro_datos');
+Route::post('/datos', 'AuthController@post_registro_datos_personales');
+
+
+Route::post('/evaluar_test', 'AuthController@post_completar_registro');
+
 
 
 Route::group(['before' => 'auth'], function()

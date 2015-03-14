@@ -13,7 +13,6 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="{{ URL::to('') }}">Inicio</a></li>
-            <li role="presentation" ><a href="{{ URL::to('login') }}">Login</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">GARWA</h3>
@@ -38,7 +37,6 @@
         <ul>
             <li><p>Seleccione la opción "a" o "b" para indicar su respuesta a cada pregunta. Solo puede seleccionar una respuesta.</p></li>
             <li><p>Si tanto "a" y "b" parecen aplicarse a usted, seleccione aquella que se aplique con mayor frecuencia.</p></li>
-            <li>{{ $usuario->nombre_usuario }}</li>
         </ul>
 
     </div>
@@ -114,6 +112,7 @@
         </div>
     </div>
 
+<input id="dato-usuario" type="hidden" name="" value="{{ $usuario->id }}">
 
 
     <div id="modal_form" class="modal fade">
@@ -129,6 +128,7 @@
 
                 {{ Form::open(array('action' => 'AuthController@post_completar_registro', 'method' => 'POST'), array('role' => 'form')) }}
                   {{ Form::hidden('estilo_aprendizaje_usuario', null, ['id' => 'estilo']) }}
+                  {{ Form::hidden('id_usuario', null, ['id' => 'id_usuario']) }}
                   {{ Form::submit('Seguir', array('class' => 'btn btn-primary')) }}
                 {{ Form::close() }}
 
@@ -148,7 +148,9 @@
             <h4 class="modal-title">Alerta!!</h4>
           </div>
           <div class="modal-body">
+
               <p>El cuestionario ha sido mal diligenciado, vuelve a intentarlo!!</p>
+              {{ Form::hidden('id_usuario', null, ['id' => 'prueba_user']) }}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
