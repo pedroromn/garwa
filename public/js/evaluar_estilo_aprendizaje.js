@@ -110,6 +110,10 @@ $('document').ready(function(){
             var id = $('#dato-usuario').val();
             $('#id_usuario').val(id);
 
+            var estilo = estilos[estilo_aprendizaje - 1];
+
+            $('#exito').text('Tu estilo de aprendizaje es: ' + estilo + '.\nTu registro finalizó de forma exitosa, inicia sesión y comienza a aprender' );
+
             
             
             $('#modal_form').modal('show');

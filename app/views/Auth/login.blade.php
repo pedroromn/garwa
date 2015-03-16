@@ -13,7 +13,7 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="{{ URL::to('') }}">Inicio</a></li>
-            <li role="presentation" ><a href="{{ URL::to('datos') }}">Registro</a></li>
+            <li role="presentation" ><a href="{{ URL::to('registro_datos') }}">Registro</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">GARWA</h3>

@@ -32,6 +32,29 @@ class CursoController extends BaseController {
 
       // listamos las unidades asociadas a este curso
 
+      if(Auth::check()){
+
+
+        $datos = DB::table('cursos')
+                 ->Join('unidades', 'cursos.id', '=', 'unidades.curso_id')
+                 ->where('cursos.id', '=', $id)
+                 ->get();
+
+         if(empty($datos)){
+
+            return Redirect::back()->with('mensaje_error', 'Este curso no está habilitado');
+
+         }else{
+
+          $usuario = Auth::user();
+          $curso = Curso::find($id);
+
+          return View::make('Curso.cursoId', array('datos' => $datos, 'usuario' => $usuario, 'curso' => $curso));
+
+         }        
+
+      }
+
    }
 
   

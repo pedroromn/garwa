@@ -1,7 +1,7 @@
 @extends('layouts.contenido')
 
 @section('cabecera')
-    <title>Cursos</title>
+    <title>Leccion {{ $leccion->id }}: {{ $leccion->titulo_leccion }}</title>
 
 @stop
 
@@ -43,8 +43,8 @@
 
   <div class="jumbotron">
       <div class="container">
-        <h1>Bienvenido </h1>
-        <p>En esta sección encontrarás el listado de cursos disponibles</p>
+        <h1>{{ $leccion->titulo_leccion }}</h1>
+        <p><a style="font-size: 15px" class="btn-default" rol="button" href="{{ URL::to('tema/'.$leccion->tema_id) }}" >&laquo; Volver a lecciones del tema</a></p>
       </div>
     </div>
 
@@ -53,21 +53,22 @@
     <div class="container">
       <!-- Example row of columns -->
 
-      <div class="row">
+          @foreach($objeto_aprendizaje as $key => $value)
 
-        @foreach($cursos as $value)
-
-            <div class="col-md-4">
-              <h2>{{ $value['nombre_curso'] }}</h2>
-              <p>{{ $value['descripcion_curso'] }}</p>
-              <p><a class="btn btn-default" href="cursos/{{ $value['id'] }}" role="button">Ver curso &raquo;</a></p>
+            <div class="col-md-12">
+              <h2> <b>Título:</b> {{ $value->nombre_objetos_aprendizaje  }}</h2>
+              <p>  <b>Formato:</b> {{  $value->formato_objeto_aprendizaje }}</p>
+              <p>  <b>Descripción:</b> {{  $value->descripcion_objeto_aprendizaje }}</p>
             </div>
 
         @endforeach
 
-      </div>  
 
-      <div class="container">
+
+
+            
+
+       <div class="container">
         
         <br><br>
 
@@ -75,20 +76,14 @@
                             <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
                           @endif
 
-      </div>
+      </div> 
 
 @stop
-
-
-
-
-
 
 
 @section('footer')
 
 <br><br><br><br><br><br>
-
 
     <div class="container">
         <footer class="footer">

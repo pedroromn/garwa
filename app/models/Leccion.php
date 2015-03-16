@@ -9,7 +9,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class Leccion extends Eloquent {
 
 
-    public static $table = 'lecciones';
+    public  $table = 'lecciones';
 
     public function tema(){
         return $this->belongsTo('Tema', 'tema_id');

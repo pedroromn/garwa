@@ -63,14 +63,19 @@ Route::get('testdb', function(){
     // $estilo->nombre_estilo_aprendizaje = 'estilo rcn';
     // $estilo->save();
 
-    $usuario1 = new Usuario();
+    $usuario = new Usuario();
 
-    $usuario1->nombre_usuario = "user";
-    $usuario1->apellido_usuario = "Prueba";
-    $usuario1->email = "testxx@example.com";
-    $usuario1->password = Hash::make("testxx");
-    $usuario1->id_estilo_aprendizaje = 9;
-    $usuario1->save();
+    $usuario->nombre_usuario = "Anny";
+    $usuario->apellido_usuario = "Pérez";
+    $usuario->email = "annikp@example.com";
+    $usuario->password = Hash::make("12345");
+    $usuario->id_estilo_aprendizaje = 1;
+    $usuario->estado_usuario = 1;
+    $usuario->nivel_secundaria_usuario = 5;
+    $usuario->rol_usuario = 1;
+    $usuario->fecha_nacimiento_usuario = "1991-05-06";
+    $usuario->genero_usuario = 2;
+    $usuario->save();
 
 });
 

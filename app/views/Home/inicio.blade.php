@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('cabecera')
-    <title>Inicio</title>
+    <title>Bienvenido a Garwa</title>
 
     <!-- Bootstrap Core CSS -->
 
@@ -50,7 +50,7 @@
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
               <ul class="nav navbar-nav">
                 <li><a href="{{ URL::to('login') }}">Login</a></li>
-                <li><a href="{{ URL::to('datos') }}">Registro</a></li>
+                <li><a href="{{ URL::to('registro_datos') }}">Registro</a></li>
               </ul>
             </div>
             <!-- /.navbar-collapse -->

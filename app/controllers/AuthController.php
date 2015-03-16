@@ -27,6 +27,8 @@ class AuthController extends BaseController {
 
         $validator = Validator::make(Input::all(), $rules);
 
+
+
         // process the login
         if ($validator->fails()) {
             return Redirect::to('login')
@@ -39,12 +41,35 @@ class AuthController extends BaseController {
                 'password' => Input::get('password')
             );
 
-            if (Auth::attempt($data))
-            {
-                return Redirect::to('cursos');
-            }
-            return Redirect::to('login')
-                            ->with('mensaje_error', 'Tus datos son incorrectos');
+            echo $data['email'] .'<br>';
+
+            $query = DB::table('usuarios')->select('id')
+                                ->where('email', '=', $data['email'])
+                                ->where('estado_usuario', '=', 'INACTIVO')
+                                ->get();
+
+                                //print_r($query[0]->id);
+            
+
+            if(!empty($query)){
+
+                                $id = $query[0]->id;
+
+                return Redirect::to('test/'.$id)
+                            ->with('mensaje_error', 'Debes completar tu registro, realizando el test de Felder');
+
+
+            }else{
+
+                if (Auth::attempt($data))
+                {
+                    return Redirect::to('cursos');
+                }
+                return Redirect::to('login')
+                            ->with('mensaje_error', 'Tus datos son incorrectos'); 
+            }        
+
+            
         }
 
     }
@@ -90,7 +115,7 @@ class AuthController extends BaseController {
                     ->get(); 
                     
 
-            if(isset($user)){
+            if(!empty($user)){
 
 
                 return Redirect::to('registro_datos')

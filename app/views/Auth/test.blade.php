@@ -43,6 +43,16 @@
 
   </div> <!-- DIV CLASS="CONTAINER" --> 
 
+  <div class="container">
+
+      @if(Session::has('mensaje_error'))
+                            <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
+                          @endif
+
+
+    
+  </div>
+
 
 
 
@@ -124,7 +134,7 @@
           </div>
           <div class="modal-body">
 
-                <p>Tu registro en el sistema está completado, puedes seguir y comenzar a disfrutar del contenido</p>
+                <p id="exito"></p>
 
                 {{ Form::open(array('action' => 'AuthController@post_completar_registro', 'method' => 'POST'), array('role' => 'form')) }}
                   {{ Form::hidden('estilo_aprendizaje_usuario', null, ['id' => 'estilo']) }}
