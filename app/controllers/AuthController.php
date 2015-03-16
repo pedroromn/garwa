@@ -77,7 +77,7 @@ class AuthController extends BaseController {
 
     public function get_logout(){
         Auth::logout();
-        return Redirect::to('login')->with('mensaje', 'Su sessión ha finalizado!');
+        return Redirect::to('login')->with('mensaje', 'Su sesión ha finalizado!');
     }
 
 
@@ -161,19 +161,48 @@ class AuthController extends BaseController {
      public function get_test_felder($id_usuario)
     {
 
-        $test = Test::all();
-
         $usuario = Usuario::find($id_usuario);
+        
+        if(empty($usuario)){
 
-        if(isset($usuario)){
-
-            return View::make('Auth.test', array('test' => $test, 'usuario' => $usuario));
+            return Redirect::to('registro_datos')
+                                ->with('mensaje_error', 'Tu usuario no existe, regístrate');
 
         }else{
 
-            echo "Sitio no existente";
+            $estado = $usuario->estado_usuario;
 
-        }
+            if($estado == 2){
+
+                return View::make('Auth.test', array('test' => $test, 'usuario' => $usuario));
+
+            }else{
+
+
+                return Redirect::to('login')
+                                ->with('mensaje_error', 'No necesitas repetir el test de Felder');
+
+            }
+
+        }            
+
+        
+
+
+
+        // $test = Test::all();
+
+        // $usuario = Usuario::find($id_usuario);
+
+        // if(emp($usuario)){
+
+        //     return View::make('Auth.test', array('test' => $test, 'usuario' => $usuario));
+
+        // }else{
+
+        //     echo "Sitio no existente";
+
+        // }
 
 
         

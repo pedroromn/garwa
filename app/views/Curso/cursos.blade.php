@@ -44,7 +44,7 @@
   <div class="jumbotron">
       <div class="container">
         <h1>Bienvenido </h1>
-        <p>En esta sección encontrarás el listado de cursos disponibles</p>
+        <p>Una gran variedad de cursos disponibles te esperan. <br> Comienza a aprender</p>
       </div>
     </div>
 

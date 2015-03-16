@@ -42,12 +42,12 @@
  
                 <div class="form-group col-lg-6">
                     {{ Form::label('nombre', 'Nombre') }}
-                    {{ Form::text('nombre', '', array('class' => 'form-control', 'required' => 'required')) }}
+                    {{ Form::text('nombre', '', array('class' => 'form-control', 'required' => 'required', 'placeholder' => 'nombre')) }}
                 </div>
 
                 <div class="form-group col-lg-6">
                     {{ Form::label('apellido', 'Apellido') }}
-                    {{ Form::text('apellido', '', array('class' => 'form-control', 'required' => 'required')) }}
+                    {{ Form::text('apellido', '', array('class' => 'form-control', 'required' => 'required', 'placeholder' => 'appellido')) }}
                 </div>
                 
 
@@ -82,13 +82,13 @@
                 
                 <div class="form-group col-lg-12">
                     {{ Form::label('email', 'Email') }}
-                   {{ Form::email('email', '', ['class' => 'form-control', 'required' => 'required']) }}
+                   {{ Form::email('email', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'email']) }}
                 </div>
 
 
                 <div class="form-group col-lg-12">
                     {{ Form::label('password', 'Password') }}
-                    {{ Form::password('password', ['class' => 'form-control', 'required' => 'required']) }}
+                    {{ Form::password('password', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'password']) }}
                 </div>
 
                 <div class="form-group col-lg-6">
